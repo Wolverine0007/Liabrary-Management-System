@@ -1,3 +1,8 @@
+Certainly! Here's a **clean, clearly structured, and well-formatted version** of your `README.md` for the **Library Management System** project. Everything is organized and corrected for proper Markdown rendering and clarity.
+
+---
+
+```markdown
 # 📚 Library Management System
 
 A simple web-based Library Management System built using **PHP** and **MySQL**, designed to help manage books, users, and issue records efficiently.
@@ -135,7 +140,7 @@ This project is licensed under the **MIT License**.
 
 If you face any issues or have questions:
 
-* Open an issue on the [GitHub repository](https://github.com/SatAlgo/LibraryManagementSystem)
+* Open an issue on the [GitHub repository](https://github.com/SatAlgo/Library-Management-System)
 * Or contact the project maintainer directly via GitHub
 
 ---
