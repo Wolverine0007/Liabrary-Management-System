@@ -1,4 +1,3 @@
-```markdown
 # 📚 Library Management System
 
 A simple web-based Library Management System built using **PHP** and **MySQL**, designed to help manage books, users, and issue records efficiently.
