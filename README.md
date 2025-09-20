@@ -131,14 +131,6 @@ This project is licensed under the **MIT License**.
 
 ---
 
-## 📬 Support
-
-If you face any issues or have questions:
-
-* Open an issue on the [GitHub repository](https://github.com/SatAlgo/Library-Management-System)
-* Or contact the project maintainer directly via GitHub
-
----
 
 ## ✏️ Additional Notes
 
