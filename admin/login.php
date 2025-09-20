@@ -2,17 +2,27 @@
 session_start();
 $error = "";
 include("fetch_announcements.php");
+require_once dirname(__DIR__) . "/config.php";
+
+function verify_password_maybe_hashed($inputPassword, $storedPassword) {
+    if (strpos($storedPassword, '$2y$') === 0 || strpos($storedPassword, '$argon2') === 0) {
+        return password_verify($inputPassword, $storedPassword);
+    }
+    return hash_equals($storedPassword, $inputPassword);
+}
 
 if (isset($_POST['login'])) {
-    $connection = mysqli_connect("localhost", "root", "", "lms");
-    $email = mysqli_real_escape_string($connection, $_POST['email']);
-    $password = $_POST['password'];
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
 
-    // Check staff_accounts
-    $staff_query = "SELECT * FROM staff_accounts WHERE email = '$email' LIMIT 1";
-    $staff_result = mysqli_query($connection, $staff_query);
+    // Check staff_accounts via prepared statement
+    $stmt = mysqli_prepare($connection, "SELECT id, name, email, password, role FROM staff_accounts WHERE email = ? LIMIT 1");
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $staff_result = mysqli_stmt_get_result($stmt);
     if ($row = mysqli_fetch_assoc($staff_result)) {
-        if ($row['password'] === $password) {
+        if (verify_password_maybe_hashed($password, $row['password'])) {
+            session_regenerate_id(true);
             $_SESSION['name'] = $row['name'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['role'] = $row['role'];
@@ -26,15 +36,19 @@ if (isset($_POST['login'])) {
             $error = "Incorrect password.";
         }
     } else {
-        // Check users table
-        $user_query = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
-        $user_result = mysqli_query($connection, $user_query);
+        // Fallback: allow user login here too (redirects to user dashboard)
+        $stmt2 = mysqli_prepare($connection, "SELECT id, name, email, password, library_card_no FROM users WHERE email = ? LIMIT 1");
+        mysqli_stmt_bind_param($stmt2, "s", $email);
+        mysqli_stmt_execute($stmt2);
+        $user_result = mysqli_stmt_get_result($stmt2);
         if ($user = mysqli_fetch_assoc($user_result)) {
-            if ($user['password'] === $password) {
+            if (verify_password_maybe_hashed($password, $user['password'])) {
+                session_regenerate_id(true);
                 $_SESSION['name'] = $user['name'];
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['library_card_no'] = $user['library_card_no'];
                 $_SESSION['id'] = $user['id'];
+                $_SESSION['role'] = 'student';
                 header("Location: ../user_dashboard.php");
                 exit();
             } else {
@@ -71,10 +85,8 @@ if (isset($_POST['login'])) {
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-header" href="index.php">
-                <img src="../images/logo.png" alt="Library Logo" height="40">
-                <a class="navbar-brand" href="index.php">Central Library</a>
-            </a>
+            <img src="../images/logo.jpg" alt="Library Logo" height="40">
+            <a class="navbar-brand" href="login.php">Central Library</a>
         </div>
     </div>
 </nav><br>

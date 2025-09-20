@@ -3,10 +3,11 @@
 	#fetch data from database
 	$connection = mysqli_connect("localhost","root","");
 	$db = mysqli_select_db($connection,"lms");
-	$name = "";
-	$email = "";
-	$mobile = "";
-	$address = "";
+$name = "";
+$email = "";
+$mobile = "";
+$address = "";
+$library_card_no = "";
 	$query = "select * from users where email = '$_SESSION[email]'";
 	$query_run = mysqli_query($connection,$query);
 	while ($row = mysqli_fetch_assoc($query_run)){
@@ -14,6 +15,7 @@
 		$email = $row['email'];
 		$mobile = $row['mobile'];
 		$address = $row['address'];
+		$library_card_no = $row['library_card_no'];
 	}
 ?>
 <!DOCTYPE html>
@@ -29,7 +31,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="admin_dashboard.php">Library Management System (LMS)</a>
+				<a class="navbar-brand" href="user_dashboard.php">Library Management System (LMS)</a>
 			</div>
 			<font style="color: white"><span><strong>Welcome: <?php echo $_SESSION['name'];?></strong></span></font>
 			<font style="color: white"><span><strong>Email: <?php echo $_SESSION['email'];?></strong></font>
@@ -64,6 +66,10 @@
 						<label for="email">Email:</label>
 						<input type="text" value="<?php echo $email;?>" class="form-control" disabled>
 					</div>
+				<div class="form-group">
+					<label for="library_card_no">Library Card No.:</label>
+					<input type="text" value="<?php echo htmlspecialchars($library_card_no);?>" class="form-control" disabled>
+				</div>
 					<div class="form-group">
 						<label for="mobile">Mobile:</label>
 						<input type="text" value="<?php echo $mobile;?>" class="form-control" disabled>

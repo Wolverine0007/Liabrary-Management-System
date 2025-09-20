@@ -120,7 +120,7 @@ include("fetch_announcements.php");
 		<div class="container-fluid">
 			<div class="navbar-header">
 			<img src="../images/logo.jpg" alt="Library Logo" height="40">
-			<a class="navbar-brand" href="login.php">Central Library</a>
+			<a class="navbar-brand" href="admin_dashboard.php">Central Library</a>
 			</div>
 			<font style="color: white">
                 <strong>Welcome: <?php echo $_SESSION['name']; ?></strong>

@@ -64,11 +64,8 @@ if (isset($_POST['login'])) {
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-header" href="index.php">
-					<img src="../images/logo.png" alt="Library Logo" height="40">
-					<a class="navbar-brand" href="index.php">Central Library</a>
-				</a>
-
+				<img src="../images/logo.jpg" alt="Library Logo" height="40">
+				<a class="navbar-brand" href="index.php">Central Library</a>
 			</div>
 	
 		    <ul class="nav navbar-nav navbar-right">

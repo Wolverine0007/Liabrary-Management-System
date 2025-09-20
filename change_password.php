@@ -15,7 +15,9 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<img src="../images/logo.png" alt="Library Logo" height="40">
+				<a href="user_dashboard.php">
+					<img src="images/logo.jpg" alt="Library Logo" height="40">
+				</a>
 			</div>
 			<font style="color: white"><span><strong>Welcome: <?php echo $_SESSION['name'];?></strong></span></font>
 			<font style="color: white"><span><strong>Email: <?php echo $_SESSION['email'];?></strong></span></font>
@@ -30,9 +32,9 @@
 	        		<a class="dropdown-item" href="change_password.php">Change Password</a>
 	        	</div>
 		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="../logout.php">Logout</a>
-		      </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="logout.php">Logout</a>
+			  </li>
 		    </ul>
 		</div>
 	</nav><br>

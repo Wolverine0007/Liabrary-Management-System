@@ -39,7 +39,7 @@
 	<title>LMS</title>
 	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="bootstrap-4.4.1/css/bootstrap.min.css">
-	<script src="bootstrap-4.4.1/js/jquery_latest.js"></script>
+	<script src="bootstrap-4.4.1/js/juqery_latest.js"></script>
 	<script src="bootstrap-4.4.1/js/bootstrap.min.js"></script>
 </head>
 <style>
@@ -58,7 +58,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<img src="images/logo.png" alt="Library Logo" height="40">
+				<img src="images/logo.jpg" alt="Library Logo" height="40">
 				<a class="navbar-brand" href="index.php">Central Library</a>
 			</div>
 			<ul class="nav navbar-nav ml-auto">

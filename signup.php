@@ -20,10 +20,10 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <img src="images/logo.png" alt="Library Logo" height="40">
-            <a class="navbar-brand" href="index.php">Central Library</a>
-        </div>
+		<div class="navbar-header">
+			<img src="images/logo.jpg" alt="Library Logo" height="40">
+			<a class="navbar-brand" href="index.php">Central Library</a>
+		</div>
         <ul class="nav navbar-nav navbar-right">
             <li class="nav-item"><a class="nav-link" href="index.php">Admin Login</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Register</a></li>

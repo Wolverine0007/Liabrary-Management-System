@@ -51,8 +51,8 @@ $query_run = mysqli_query($connection, $query);
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
 		<div class="container-fluid"> 
 			<div class="navbar-header">
-				<img src="../images/logo.png" alt="Library Logo" height="40">
-				<a class="navbar-brand" href="index.php">Central Library</a>
+				<img src="../images/logo.jpg" alt="Library Logo" height="40">
+				<a class="navbar-brand" href="../user_dashboard.php">Central Library</a>
 			</div>
 			<font style="color: white"><span><strong>Welcome: <?php echo $_SESSION['name'];?></strong></span></font> 
 			<font style="color: white"><span><strong>Email: <?php echo $_SESSION['email'];?></strong></span></font>
@@ -75,41 +75,14 @@ $query_run = mysqli_query($connection, $query);
 	</nav>
 	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd"> 
 		<div class="container-fluid">
-			<a class="navbar-brand" href="admin_dashboard.php">Dashboard</a>
+			<a class="navbar-brand" href="../user_dashboard.php">Dashboard</a>
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav mr-auto">
-
-					<!-- Books Dropdown -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="booksDropdown" role="button" data-toggle="dropdown">
-							Books
-						</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="add_book.php">Add New Book</a>
-							<a class="dropdown-item" href="issue_book.php">Issue Book</a>
-							<a class="dropdown-item" href="Regbooks.php">All Books</a>
-							<a class="dropdown-item" href="view_issued_book.php">Issued Books</a>
-						</div>
-					</li>
-
-					<!-- Users Dropdown -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button" data-toggle="dropdown">
-							Users
-						</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="manage_users.php">Manage Users</a>
-							<a class="dropdown-item" href="add_user.php">Add New User</a>
-							<a class="dropdown-item" href="issue_book.php">Issue Book</a>
-						</div>
-					</li>
-
-				</ul>
+				<ul class="navbar-nav mr-auto"></ul>
 			</div>
 		</div>
 	</nav><br>

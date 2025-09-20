@@ -63,10 +63,10 @@ if (isset($_POST['add_book'])) {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <img src="../images/logo.png" alt="Library Logo" height="40">
-                <a class="navbar-brand" href="index.php">Central Library</a>
-            </div>
+			<div class="navbar-header">
+				<img src="../images/logo.jpg" alt="Library Logo" height="40">
+				<a class="navbar-brand" href="admin_dashboard.php">Central Library</a>
+			</div>
             <font style="color: white">
                 <strong>Welcome: <?php echo $_SESSION['name']; ?></strong>
             </font>

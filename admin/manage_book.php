@@ -2,9 +2,8 @@
 	require("functions.php"); 
 	session_start(); 
 	include("fetch_announcements.php");
+	require_once dirname(__DIR__) . "/config.php";
 
-	$connection = mysqli_connect("localhost","root",""); 
-	$db = mysqli_select_db($connection,"lms"); 
 	$name = ""; 
 	$email = ""; 
 	$phone = ""; 
@@ -45,8 +44,8 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
 		<div class="container-fluid"> 
 			<div class="navbar-header">
-				<img src="../images/logo.png" alt="Library Logo" height="40">
-				<a class="navbar-brand" href="index.php">Central Library</a>
+				<img src="../images/logo.jpg" alt="Library Logo" height="40">
+				<a class="navbar-brand" href="admin_dashboard.php">Central Library</a>
 			</div>
 			<font style="color: white"><span><strong>Welcome: <?php echo $_SESSION['name'];?></strong></span></font> 
 			<font style="color: white"><span><strong>Email: <?php echo $_SESSION['email'];?></strong></span></font>
@@ -113,8 +112,37 @@
 	<div class="row"> 
 		<div class="col-md-2"></div> 
 		<div class="col-md-8"> 
+			<!-- Issue Book Section (First) -->
+			<div class="card mb-4">
+				<div class="card-header">Issue Book</div>
+				<div class="card-body">
+					<form action="issue_book.php" method="post">
+						<div class="form-row">
+							<div class="form-group col-md-3">
+								<label>Accession No.</label>
+								<input type="text" id="issue_accession_number" name="accession_number" class="form-control" required>
+							</div>
+							<div class="form-group col-md-3">
+								<label>Library Card No.</label>
+								<input type="text" name="library_card_no" class="form-control" required>
+							</div>
+							<div class="form-group col-md-3">
+								<label>Issue Date</label>
+								<input type="date" name="issue_date" class="form-control" value="<?php echo date('Y-m-d'); ?>" required>
+							</div>
+							<div class="form-group col-md-3">
+								<label>Due Date</label>
+								<input type="date" name="due_date" class="form-control" required>
+							</div>
+						</div>
+						<button type="submit" name="issue_book" class="btn btn-primary">Issue</button>
+						<a href="issue_book.php" class="btn btn-link">Advanced issue form</a>
+					</form>
+				</div>
+			</div>
 
-			<input type="text" id="searchInput" class="form-control" placeholder="Search books..." onkeyup="searchBooks()"><br>
+			<!-- Search by Title (Second) -->
+			<input type="text" id="searchInput" class="form-control" placeholder="Search by title... (click a row to add to Issue form)" onkeyup="searchBooks()"><br>
 			<table class="table table-bordered table-hover"> 
 				<thead> 
 					<tr> 
@@ -127,13 +155,11 @@
 					</tr> 
 				</thead> 
 				<?php 
-					$connection = mysqli_connect("localhost","root",""); 
-					$db = mysqli_select_db($connection,"lms"); 
 					$query = "SELECT * FROM books"; 
 					$query_run = mysqli_query($connection,$query); 
 					while ($row = mysqli_fetch_assoc($query_run)){ 
 				?> 
-				<tr class="book-row"> 
+				<tr class="book-row" data-accession="<?php echo $row['accession_number']; ?>" style="cursor: pointer;"> 
 					<td><?php echo $row['accession_number']; ?></td> 
 					<td class="book-name"><?php echo $row['title']; ?></td> 
 					<td><?php echo $row['author']; ?></td> 
@@ -155,5 +181,22 @@
 		</div> 
 		<div class="col-md-2"></div> 
 	</div> 
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var rows = document.querySelectorAll('.book-row');
+			rows.forEach(function(row) {
+				row.addEventListener('click', function() {
+					var accession = this.getAttribute('data-accession');
+					var input = document.getElementById('issue_accession_number');
+					if (input && accession) {
+						input.value = accession;
+						input.focus();
+						input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+					}
+				});
+			});
+		});
+	</script>
 </body> 
 </html>

@@ -7,11 +7,7 @@ if (!isset($_SESSION['library_card_no'])) {
 }
 require("admin/functions.php");
 include("admin/fetch_announcements.php");
-
-$connection = mysqli_connect("localhost", "root", "", "lms");
-if (!$connection) {
-    die("Database connection failed: " . mysqli_connect_error());
-}
+require_once __DIR__ . '/config.php';
 
 function get_user_issue_book_count() {
     global $connection;
@@ -132,7 +128,7 @@ function calculate_fine() {
 	<div class="container-fluid">
 		<div class="navbar-header">
 		<img src="images/logo.jpg" alt="Library Logo" height="40">
-		<a class="navbar-brand" href="admin/login.php">Central Library</a>
+		<a class="navbar-brand" href="user_dashboard.php">Central Library</a>
 		</div>
 		<font style="color: white">
 			<strong>Welcome: <?php echo $_SESSION['name']; ?></strong>
